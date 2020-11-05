@@ -8,24 +8,24 @@ namespace UnityGameSystems.Display
     public class BalanceDisplay : MonoBehaviour
     {
 #pragma warning disable 0649
-        [Inject] private BaseBalanceManager _balanceManager;
+        [Inject] protected BaseBalanceManager BalanceManager;
 #pragma warning restore 0649
         
-        private TextMeshProUGUI _text;
+        protected TextMeshProUGUI BalanceText;
 
-        private void Awake()
+        protected virtual void Awake()
         {
-            _text = GetComponentInChildren<TextMeshProUGUI>();
+            BalanceText = GetComponentInChildren<TextMeshProUGUI>();
             BaseBalanceManager.OnBalanceChange += SetText;
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             BaseBalanceManager.OnBalanceChange -= SetText;
         }
 
-        private void Start() => SetText(_balanceManager.Balance);
+        protected virtual void Start() => SetText(BalanceManager.Balance);
 
-        private void SetText(int balance) => _text.text = balance.ToString();
+        protected virtual void SetText(int balance) => BalanceText.text = balance.ToString();
     }
 }

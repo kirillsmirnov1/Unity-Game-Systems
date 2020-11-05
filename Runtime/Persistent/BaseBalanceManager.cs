@@ -3,7 +3,13 @@ using UnityEngine;
 
 namespace UnityGameSystems.Persistent
 {
-    public abstract class BaseBalanceManager : MonoBehaviour
+    public interface IBalanceManager
+    {
+        int Balance { get; }
+        void ChangeBalance(int value);
+    }
+
+    public abstract class BaseBalanceManager : MonoBehaviour, IBalanceManager
     {
         public static event Action<int> OnBalanceChange;
 

@@ -8,7 +8,7 @@ namespace UnityGameSystems.Display
     public class BalanceDisplay : MonoBehaviour
     {
 #pragma warning disable 0649
-        [Inject] protected BaseBalanceManager BalanceManager;
+        [Inject] protected IBalanceManager BalanceManager;
 #pragma warning restore 0649
         
         protected TextMeshProUGUI BalanceText;
